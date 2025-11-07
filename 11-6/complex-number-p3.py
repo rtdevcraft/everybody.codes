@@ -106,6 +106,26 @@ def count_engraved_points(A):
     
     return count
 
-A=[-79745,-16616]
+def count_engraved_points_large(A):
+    step = 1  
+    count = 0
+    
+    for row in range(1001):  
+        y = A[1] + (row * step)
+        
+        for col in range(1001):  
+            x = A[0] + (col * step)
+            point = (x, y)
+            
+            if should_engrave(point):
+                count += 1
+        
+        
+        if (row + 1) % 100 == 0:
+            print(f"Checked row {row + 1}/1001, engraved so far: {count}")
+    
+    return count
 
-print(count_engraved_points(A))
+A = [-79745, -16616]
+total = count_engraved_points_large(A)
+print(f"\nFinal answer: {total}")
